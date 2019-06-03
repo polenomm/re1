@@ -1,0 +1,10 @@
+n = int(input('n='))
+z=list()
+for i in range(n):
+    print(f"введите {i + 1} элемент")
+    x = int(input())
+    if x==0:
+        z=[x]+z
+    else:
+        z.append(x)
+print(f'результат {z}')
