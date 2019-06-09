@@ -1,0 +1,35 @@
+x = []
+while True:
+    n = int(input('n = '))
+    if n > 2:
+        for i in range(n):
+            x += float(input('введите значение')),
+        else:
+            break
+    elif n <= 2:
+        print('введите n>2')
+        continue
+
+y = x[0]
+
+for i in range(n-1):
+    if float(y) >= float(x[i+1]):
+        continue
+    elif float(y) < float(x[i+1]):
+        y = x[i+1]
+else:
+    x.append((y))
+    del x[x.index(y)]
+
+z = x[0]
+
+for v in range(n-2):
+    if float(z) >= float(x[v+1]):
+        continue
+    else:
+        z = x[v + 1]
+else:
+    x.insert(n-1, z)
+    del x[x.index(z)]
+
+print(x)
