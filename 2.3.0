@@ -1,0 +1,10 @@
+from random import randrange
+
+x = int(randrange(1, 11, 1))
+y = int(input('Отгадай число от 1 до 10, которое загодал компьюетр: '))
+while True:
+    if x == y:
+        print("Поздаравляю вы победили, это было число",x)
+        break
+    else:
+        y = int(input('Попробуйте еще раз: '))
