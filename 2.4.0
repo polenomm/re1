@@ -1,0 +1,8 @@
+def count(x, y):
+    z = []
+    while x < 1000:
+        z.append(x)
+        x+=y
+    return z
+for a in count(1, 2):
+    print(a)
