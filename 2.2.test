@@ -1,0 +1,34 @@
+import calendar
+d = {6: 'воскресение', 0: 'понедельник', 1: 'вторник', 2: 'среда', 3: 'четверг', 4: 'пятница', 5: 'суббота'}
+x = str(input('Введите день, недели: '))
+
+while True:
+    if str(x) in d.values():
+        break
+    else:
+        print('Пример: вторник')
+        x = input('Введите день, недели: ')
+
+for  i in range(7):
+    if  str(d.get(i)) == x:
+        z = int(i)
+        break
+    else:
+        continue
+
+permen=[]
+for i1 in range(2019,2021):
+    for i2 in range(1,13):
+        firstday = calendar.monthrange(i1, i2)
+        if firstday[0] == z:
+            if i1 == 2019 and i2 < 6:                
+                continue
+            else:
+                permen.append(i1)
+                permen.append(i2)
+        else:
+            continue
+else:
+    i1 = permen[0]
+    i2 = permen[1]
+    print(f'ближайшая дата {i2} месяц {i1} год '
