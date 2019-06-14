@@ -1,0 +1,31 @@
+def cell():
+    z = []
+    x = []
+    for i in range(13):
+        if i in range(0, 13, 4):
+            x.append('+')
+            z.append('|')
+        else:
+            x.append('-')
+            if i ==
+            z.append(' ')
+    for i in range(7):
+        if i in range(0, 7, 2):
+            print(''.join(x))
+        else:
+            print(''.join(z))
+move = 0
+while True:
+    move += 1
+    if move%2 == 1:
+        print(cell())
+        a = input('введи кординаты x (вер,гор): ')
+    else:
+        print(cell())
+        a = input('введи кординаты 0 (вер,гор): ')
+    a = list(a)
+    x = a[0]
+    y = a[2]
+
+
+print(act(1,1))
