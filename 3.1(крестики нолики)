@@ -1,0 +1,209 @@
+def calc(*kordinata):
+    z = []
+    x = []
+    a = []
+    kordinata = list(kordinata)
+
+    while True:
+        if ',' in kordinata:
+            kordinata.remove(',')
+        else:
+            break
+
+    for i in range(13):
+        if i in range(0, 13, 4):
+            x.append('+')
+            z.append('|')
+        else:
+            x.append('-')
+            z.append(' ')
+    for i in range(7):
+        if i % 2 == 0:
+            a += x +['\n']
+        else:
+            a += z +['\n']
+
+    for i in range(0, len(kordinata), 2):
+        if i in range(0, int(len(kordinata)), 4):
+            n = 14*(2*int(kordinata[i])-1)+2+4*(int(kordinata[i+1])-1)
+            a[n] = 'x'
+        else:
+            n = 14 * (2 * int(kordinata[i]) - 1) + 2 + 4 * (int(kordinata[i + 1]) - 1)
+            a[n] = 'o'
+    return a
+
+def prov(*kordin):
+    if len(kordin) == 3:
+        if 1 <= int(kordin[0]) <= 3 and 1 <= int(kordin[2]) <=3:
+            if kordin[1] == ',':
+                return True
+            else:
+                return False
+        else:
+            return False
+    else:
+        return False
+
+
+def mir1(*kordin):
+    tr = 0
+    if hod > 1:
+        for i in range(0, int(len(kordinata)/3)):
+            if kordinata[3*i:3+3*i] == list(kordin):
+                return False
+            else:
+                tr = 0
+        if tr == 0:
+            return True
+    else:
+        return True
+
+def win():
+    player1 = []
+    player2 = []
+    if hod >= 5:
+        for i in range(int(len(kordinata)/3)):
+            if i%2 == 0:
+                player1 += kordinata[3*i:3*i+3]
+            else:
+                player2 += kordinata[3*i:3*i+3]
+    else:
+        return True
+    if hod % 2 == 1:
+        return win1(*player1)
+    else:
+        return win1(*player2)
+
+def win(*kordinata):
+    player1 = []
+    player2 = []
+    prim = list(kordinata)
+    while ',' in prim:
+        ind = prim.index(',')
+        del prim[ind]
+    if hod >= 5:
+        for i in range(int(len(prim)/2)):
+            if i%2 == 0:
+                player1 += prim[2*i:2*i+2]
+            else:
+                player2 += prim[2*i:2*i+2]
+        if hod % 2 == 1:
+            return win1(*player1)
+        else:
+            return win1(*player2)
+    else:
+        return True
+
+def win1(*hh):
+    hh = list(hh)
+    for a in range(1, 4):
+        sch = 0
+        for b in range(1, 4):
+            pob = []
+            pob.append(str(a))
+            pob.append(str(b))
+            for i in range(int(len(hh) / 2)):
+                if hh[2 * i:2 * i + 2] == pob:
+                    sch += 1
+                else:
+                    continue
+            else:
+                if sch == 3:
+                    return False
+                else:
+                    continue
+    for a in range(1, 4):
+        sch = 0
+        for b in range(1, 4):
+            pob = []
+            pob.append(str(b))
+            pob.append(str(a))
+            for i in range(int(len(hh) / 2)):
+                if hh[2 * i:2 * i + 2] == pob:
+                    sch += 1
+                else:
+                    continue
+            else:
+                if sch == 3:
+                    return False
+                else:
+                    continue
+    sch = 0
+    for a in range(1, 4):
+        pob = []
+        pob.append(str(a))
+        pob.append(str(a))
+        for i in range(int(len(hh)/2)):
+            if hh[2 * i:2 * i + 2] == pob:
+                sch += 1
+            else:
+                continue
+    else:
+        if sch == 3:
+            return False
+        else:
+            erx = 0
+    sch = 0
+    for a in range(1, 4):
+        pob = []
+        pob.append(str(a))
+        pob.append(str(4-a))
+        for i in range(int(len(hh) / 2)):
+            if hh[2 * i:2 * i + 2] == pob:
+                sch += 1
+            else:
+                continue
+    else:
+        if sch == 3:
+            return False
+        else:
+            return True
+
+
+
+
+print('Привет')
+hod = 1
+kordinata = []
+while True:
+    if hod%2 == 1:
+        kordin = list(input(f'номер хода {hod}, введите кординаты через запятую:'))
+
+        if prov(*kordin):
+            if mir1(*kordin):
+                for i in range(len(kordin)):
+                    kordinata.append(kordin[i])
+                if win(*kordinata):
+
+                    print(''.join(calc(*kordinata)))
+
+
+                    hod +=1
+                else:
+                    print(f'Победил игрок X на {hod} ходу')
+                    break
+
+            else:
+                print('эта координата занята')
+        else:
+            print('неверно ввели(пример: 3,3), повторите заново')
+    else:
+        kordin = list(input(f'номер хода {hod}, введите кординаты через запятую:'))
+
+        if prov(*kordin):
+            if mir1(*kordin):
+                for i in range(len(kordin)):
+                    kordinata.append(kordin[i])
+                if win(*kordinata):
+                    print(''.join(calc(*kordinata)))
+
+                    hod +=1
+                else:
+                    print(f'Победил игрок O на {hod} ходу')
+                    break
+            else:
+                print('эта координата занята')
+        else:
+            print('неверно ввели(пример: 3,3), повторите заново')
+
+
