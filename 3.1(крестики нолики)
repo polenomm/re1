@@ -58,21 +58,14 @@ def mir1(*kordin):
     else:
         return True
 
-def win():
-    player1 = []
-    player2 = []
-    if hod >= 5:
-        for i in range(int(len(kordinata)/3)):
-            if i%2 == 0:
-                player1 += kordinata[3*i:3*i+3]
-            else:
-                player2 += kordinata[3*i:3*i+3]
-    else:
-        return True
-    if hod % 2 == 1:
-        return win1(*player1)
-    else:
-        return win1(*player2)
+
+def drow(*kordinata):
+    prim_dr = list(kordinata)
+    while ',' in prim_dr:
+        ind = prim_dr(',')
+        del prim[ind]
+
+
 
 def win(*kordinata):
     player1 = []
@@ -93,6 +86,7 @@ def win(*kordinata):
             return win1(*player2)
     else:
         return True
+
 
 def win1(*hh):
     hh = list(hh)
@@ -159,7 +153,51 @@ def win1(*hh):
         else:
             return True
 
+def drow(*kordinata):
+    kordinata = list(kordinata)
+    mas = []
+    masver = []
+    masd1 = []
+    masd2 = []
+    for i in range(9):
+        mas.append(' ')
+        masver.append(' ')
+    for i in range(int(len(kordinata)/3)):
+        if i % 2 == 0:
+            num = (int(kordinata[3*i])-1)*3+(int(kordinata[3*i+2])-1)
+            mas[num] = 'x'
 
+        else:
+            num = (int(kordinata[3*i])-1)*3+(int(kordinata[3*i+2])-1)
+            mas[num] = 'o'
+    for i in range(int(len(kordinata) / 3)):
+        if i % 2 == 0:
+            num = (int(kordinata[3 * i+2]) - 1) * 3 + (int(kordinata[3 * i]) - 1)
+            masver[num] = 'x'
+
+        else:
+            num = (int(kordinata[3 * i+2]) - 1) * 3 + (int(kordinata[3 * i]) - 1)
+            masver[num] = 'o'
+    for i in range(3):
+        masd1.append(mas[i*4])
+        masd2.append(mas[4+i])
+    dow = 0
+    for i in range(3):
+        if 'x' and 'o' in mas[3*i:3*i++3]:
+            if 'x' and 'o' in masver[3 * i:3 * i + +3]:
+                if 'x' and 'o' in masd1:
+                    if 'x' and 'o' in masd2:
+                        continue
+                    else:
+                        return True
+                else:
+                    return True
+            else:
+                return True
+        else:
+            return True
+    else:
+        return False
 
 
 print('Привет')
@@ -174,11 +212,14 @@ while True:
                 for i in range(len(kordin)):
                     kordinata.append(kordin[i])
                 if win(*kordinata):
+                    if drow(*kordinata):
+                        print(''.join(calc(*kordinata)))
 
-                    print(''.join(calc(*kordinata)))
 
-
-                    hod +=1
+                        hod +=1
+                    else:
+                        print("Ничья")
+                        break
                 else:
                     print(f'Победил игрок X на {hod} ходу')
                     break
@@ -195,9 +236,13 @@ while True:
                 for i in range(len(kordin)):
                     kordinata.append(kordin[i])
                 if win(*kordinata):
-                    print(''.join(calc(*kordinata)))
+                    if drow(*kordinata):
+                        print(''.join(calc(*kordinata)))
 
-                    hod +=1
+                        hod += 1
+                    else:
+                        print("Ничья")
+                        break
                 else:
                     print(f'Победил игрок O на {hod} ходу')
                     break
