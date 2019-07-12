@@ -1,0 +1,378 @@
+import socket
+
+sock = socket.socket()
+sock.connect(('127.0.0.1', 9970))
+while True:
+    data = sock.recv(1024)
+    print(data.decode())
+    vvod = input()
+    sock.send(vvod.encode())
+    if vvod == 'I':
+        sock.close()
+        conn = socket.socket()
+        conn.bind(('127.0.0.1', 10970))
+        conn.listen(10)
+        sock, addr = conn.accept()
+        data = sock.recv(1000000).decode()
+        if data == 'Ok':
+            sock.send(b'GoooD')
+            break
+        break
+    elif vvod == 'You':
+        break
+print('11111111')
+while True:
+    pri_packet = sock.recv(1000000000).decode()
+    if pri_packet:
+        kordinati_hoda = input(pri_packet)
+        sock.send(kordinati_hoda.encode())
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        import socket
+
+def calc(*kordinata):
+    z = []
+    x = []
+    a = []
+    kordinata = list(kordinata)
+
+    while True:
+        if ',' in kordinata:
+            kordinata.remove(',')
+        else:
+            break
+
+    for i in range(13):
+        if i in range(0, 13, 4):
+            x.append('+')
+            z.append('|')
+        else:
+            x.append('-')
+            z.append(' ')
+    for i in range(7):
+        if i % 2 == 0:
+            a += x +['\n']
+        else:
+            a += z +['\n']
+
+    for i in range(0, len(kordinata), 2):
+        if i in range(0, int(len(kordinata)), 4):
+            n = 14*(2*int(kordinata[i])-1)+2+4*(int(kordinata[i+1])-1)
+            a[n] = 'x'
+        else:
+            n = 14 * (2 * int(kordinata[i]) - 1) + 2 + 4 * (int(kordinata[i + 1]) - 1)
+            a[n] = 'o'
+    return a
+
+def prov(*kordin):
+    if len(kordin) == 3:
+        if 1 <= int(kordin[0]) <= 3 and 1 <= int(kordin[2]) <=3:
+            if kordin[1] == ',':
+                return True
+            else:
+                return False
+        else:
+            return False
+    else:
+        return False
+
+
+def mir1(*kordin):
+    tr = 0
+    if hod > 1:
+        for i in range(0, int(len(kordinata)/3)):
+            if kordinata[3*i:3+3*i] == list(kordin):
+                return False
+            else:
+                tr = 0
+        if tr == 0:
+            return True
+    else:
+        return True
+
+
+def drow(*kordinata):
+    prim_dr = list(kordinata)
+    while ',' in prim_dr:
+        ind = prim_dr(',')
+        del prim[ind]
+
+
+
+def win(*kordinata):
+    player1 = []
+    player2 = []
+    prim = list(kordinata)
+    while ',' in prim:
+        ind = prim.index(',')
+        del prim[ind]
+    if hod >= 5:
+        for i in range(int(len(prim)/2)):
+            if i%2 == 0:
+                player1 += prim[2*i:2*i+2]
+            else:
+                player2 += prim[2*i:2*i+2]
+        if hod % 2 == 1:
+            return win1(*player1)
+        else:
+            return win1(*player2)
+    else:
+        return True
+
+
+def win1(*hh):
+    hh = list(hh)
+    for a in range(1, 4):
+        sch = 0
+        for b in range(1, 4):
+            pob = []
+            pob.append(str(a))
+            pob.append(str(b))
+            for i in range(int(len(hh) / 2)):
+                if hh[2 * i:2 * i + 2] == pob:
+                    sch += 1
+                else:
+                    continue
+            else:
+                if sch == 3:
+                    return False
+                else:
+                    continue
+    for a in range(1, 4):
+        sch = 0
+        for b in range(1, 4):
+            pob = []
+            pob.append(str(b))
+            pob.append(str(a))
+            for i in range(int(len(hh) / 2)):
+                if hh[2 * i:2 * i + 2] == pob:
+                    sch += 1
+                else:
+                    continue
+            else:
+                if sch == 3:
+                    return False
+                else:
+                    continue
+    sch = 0
+    for a in range(1, 4):
+        pob = []
+        pob.append(str(a))
+        pob.append(str(a))
+        for i in range(int(len(hh)/2)):
+            if hh[2 * i:2 * i + 2] == pob:
+                sch += 1
+            else:
+                continue
+    else:
+        if sch == 3:
+            return False
+        else:
+            erx = 0
+    sch = 0
+    for a in range(1, 4):
+        pob = []
+        pob.append(str(a))
+        pob.append(str(4-a))
+        for i in range(int(len(hh) / 2)):
+            if hh[2 * i:2 * i + 2] == pob:
+                sch += 1
+            else:
+                continue
+    else:
+        if sch == 3:
+            return False
+        else:
+            return True
+
+def drow(*kordinata):
+    kordinata = list(kordinata)
+    mas = []
+    masver = []
+    masd1 = []
+    masd2 = []
+    for i in range(9):
+        mas.append(' ')
+        masver.append(' ')
+    for i in range(int(len(kordinata)/3)):
+        if i % 2 == 0:
+            num = (int(kordinata[3*i])-1)*3+(int(kordinata[3*i+2])-1)
+            mas[num] = 'x'
+
+        else:
+            num = (int(kordinata[3*i])-1)*3+(int(kordinata[3*i+2])-1)
+            mas[num] = 'o'
+    for i in range(int(len(kordinata) / 3)):
+        if i % 2 == 0:
+            num = (int(kordinata[3 * i+2]) - 1) * 3 + (int(kordinata[3 * i]) - 1)
+            masver[num] = 'x'
+
+        else:
+            num = (int(kordinata[3 * i+2]) - 1) * 3 + (int(kordinata[3 * i]) - 1)
+            masver[num] = 'o'
+    for i in range(3):
+        masd1.append(mas[i*4])
+        masd2.append(mas[4+i])
+    dow = 0
+    for i in range(3):
+        if 'x' and 'o' in mas[3*i:3*i++3]:
+            if 'x' and 'o' in masver[3 * i:3 * i + +3]:
+                if 'x' and 'o' in masd1:
+                    if 'x' and 'o' in masd2:
+                        continue
+                    else:
+                        return True
+                else:
+                    return True
+            else:
+                return True
+        else:
+            return True
+    else:
+        return False
+
+
+def chose_server(*data):
+    str_input = ''.join(data)
+    if str_input == 'You' or str_input == 'I':
+        return True
+    else:
+        return False
+
+
+print('Привет')
+hod = 1
+kordinata = []
+
+sock = socket.socket()
+sock.bind(('127.0.0.1', 9970))
+sock.listen(10)
+conn, addr = sock.accept()
+conn.send(b'Privet\r\n Kto bydet serverom?(I or You) ')
+while True:
+
+    data = conn.recv(1000000000).decode()
+    print(data)
+    if chose_server(*data):
+        if data == 'I':
+            conn.close()
+            sock.close()
+            while True:
+                conn = socket.socket()
+                conn.connect(('127.0.0.1', 10970))
+                conn.send(b'Ok')
+                data = conn.recv(100000).decode()
+                break
+
+            else:
+                break
+            break
+        else:
+            conn.send(b'Nachnem igru')
+            break
+    else:
+        conn.send(b'Ne ponal vash otvet\r\npovtorite(I or You): ')
+
+
+while True:
+
+    if hod % 2 == 1:
+        mess_hod = str(f'nomer hoda {hod}, vvedite znachenie:')
+        conn.send(mess_hod.encode())
+        kordin = conn.recv(100000000).decode()
+
+
+        if prov(*kordin):
+            if mir1(*kordin):
+                for i in range(len(kordin)):
+                    kordinata.append(kordin[i])
+                if win(*kordinata):
+                    if drow(*kordinata):
+                        pole = ''.join(calc(*kordinata))
+                        conn.send(pole.encode())
+                        hod +=1
+                    else:
+                        conn.send(b"Nichia")
+                        break
+                else:
+                    winer = f'Победил игрок X на {hod} ходу'
+                    conn.send(winer.encode())
+                    break
+
+            else:
+                fail_hod = 'eta kordinata zanata '
+                conn.send(fail_hod.encode())
+        else:
+            ne_ver_znach = 'Ne verno vveli kordinatu(primer 3,3), povtorite zanovo'
+            conn.send(ne_ver_znach.encode())
+
+    else:
+        mess_hod = str(f'nomer hoda {hod}, vvedite znachenie:')
+        conn.send(mess_hod.encode())
+        kordin = conn.recv(100000000).decode()
+        if prov(*kordin):
+            if mir1(*kordin):
+                for i in range(len(kordin)):
+                    kordinata.append(kordin[i])
+                if win(*kordinata):
+                    if drow(*kordinata):
+                        pole = ''.join(calc(*kordinata))
+                        conn.send(pole.encode())
+                        hod += 1
+                    else:
+                        conn.send(b"Nichia")
+                        break
+                else:
+                    winer = f'Победил игрок X на {hod} ходу'
+                    conn.send(winer.encode())
+                    break
+            else:
+                fail_hod = 'eta kordinata zanata '
+                conn.send(fail_hod.encode())
+        else:
+            ne_ver_znach = 'Ne verno vveli kordinatu(primer 3,3), povtorite zanovo'
+            conn.send(ne_ver_znach.encode())
+
+
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
